@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from "react";
+import { AuthRoutes } from "./components/AuthRoutes";
+import Home from "./pages/Home";
+import { LoginContext } from "./Helpers/Context";
 
 const App = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [isLogged, setIsLogged] = useState(false) 
+  const [isAuth, setIsAuth] = useState(null)
+
+	// return (
+	// 	<>
+	// 	{!isLogged ? <AuthRoutes setIsLogged={setIsLogged}/> : <Home />}
+	// 	</>
+	// )
+
+  useEffect(()=>{
+    setIsAuth(localStorage.getItem('isAuthenticated'))
+  }, [isLogged])
+  
+		  return (
+		    <>
+		      {!isAuth 	
+		        ? (<LoginContext.Provider value={{isLogged, setIsLogged}}>
+            <AuthRoutes /> 
+            </LoginContext.Provider>
+            ): (
+				<LoginContext.Provider value={{setIsLogged}}>
+              		<Home />
+			  	</LoginContext.Provider>
+              )	
+		      }
+		    </>
+		  );
 }
 
 export default App;
