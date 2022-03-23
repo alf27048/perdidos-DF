@@ -68,23 +68,7 @@ const Home = (props) => {
         ))}
       </List>
       <Divider />
-      <List>
-        {["Datos Personales", "Logout"].map((text, index) => (
-          <Link
-            to={text ==='Logout' ? '/' : `/${text}`}
-            style={{ textDecoration: "none", color: "#000" }}
-            key={index}
-          >
-            <ListItem button key={text} onClick={()=> text === 'Logout' ? handleLogout():null}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <AccountCircleIcon /> : <LogoutIcon />}
-              </ListItemIcon>
-              {text}
-            </ListItem>
-          </Link>
-        ))}
-      </List>
-      <Divider />
+      
       <List>
         <Link
           to={"/listaDeUsuarios"}
@@ -113,7 +97,24 @@ const Home = (props) => {
           </ListItem>
         </Link>
       </List>
-
+      <Divider />
+      <List>
+        {["Logout"].map((text, index) => (
+          <Link
+            to={text ==='Logout' ? '/' : `/${text}`}
+            style={{ textDecoration: "none", color: "#000" }}
+            key={index}
+          >
+            <ListItem button key={text} onClick={()=> text === 'Logout' ? handleLogout():null}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <AccountCircleIcon /> : <LogoutIcon />}
+              </ListItemIcon>
+              {text}
+            </ListItem>
+          </Link>
+        ))}
+      </List>
+    
     </>
   );
 
@@ -211,9 +212,9 @@ const Home = (props) => {
             <Route exact path="/Pedidos Entregados">
               Lista de Pedidos entregados
             </Route>
-            <Route exact path="/Datos Personales">
+            {/* <Route exact path="/Datos Personales">
               Datos personales...
-            </Route>
+            </Route> */}
             <Route exact path="/listaDeUsuarios">              
               <UsersList />                            
             </Route>

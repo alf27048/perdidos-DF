@@ -20,9 +20,9 @@ export const MenuAdministrativo = () => {
     <TabContext value={value}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <TabList onChange={handleChange} aria-label="lab API tabs example">
-          <Tab label="Gestion de usuarios" value="1" />
-          <Tab label="Gestion de productos" value="2" />
-          <Tab label="Gestion de pedidos" value="3" />
+          <Tab label="Usuarios" value="1" />
+          <Tab label="Productos" value="2" />
+          <Tab label="Pedidos" value="3" />
         </TabList>
       </Box>
       <TabPanel value="1">
